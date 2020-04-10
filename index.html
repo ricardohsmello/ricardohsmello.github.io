@@ -5,16 +5,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
 ">
 
-<div class="text-info text-center mt-2"><h1><p id="date"></p></h1></div>
+<div class="text-info text-center mt-2"><h1>Situação Covid19 - Brasil</p></h1></div>
 
 <div class="jumbotron">
 <div class="row w-100">
 
-        <div class="col-md-3">
+    <div class="col-md-3">
             <div class="card border-info mx-sm-1 p-3">
                 <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-check" aria-hidden="true"></span></div>
                 <div class="text-info text-center mt-3"><h4>Confirmados</h4></div>
                 <div class="text-info text-center mt-2"><h1><p id="confirmed"></p></h1></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-info mx-sm-1 p-3">
+                <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-check" aria-hidden="true"></span></div>
+                <div class="text-info text-center mt-3"><h4>Novos Hoje</h4></div>
+                <div class="text-info text-center mt-2"><h1><p id="today"></p></h1></div>
             </div>
         </div>
         <div class="col-md-3">
@@ -27,24 +34,27 @@
         <div class="col-md-3">
             <div class="card border-danger mx-sm-1 p-3">
                 <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-thumbs-o-down" aria-hidden="true"></span></div>
-               <div class="text-success text-center mt-3"><h4>Mortes</h4></div>
+               <div class="text-danger text-center mt-3"><h4>Mortes</h4></div>
                 <div class="text-info text-center mt-2"><h1><p id="deaths"></p></h1></div>
             </div>
         </div>        
      </div>
 </div>
+<div class="text-info text-center mt-2"><h4><p id="date"></p></h4></div>
 
 <script type="text/javascript">
 
     fetch("https://pomber.github.io/covid19/timeseries.json")
         .then(response => response.json())
         .then(data => {
-            var array = data["Brazil"].slice(-1)[0];
-     
+            var array = data["Brazil"].slice(-1)[0];     
+
             document.getElementById("confirmed").innerHTML = array.confirmed;
             document.getElementById("recovered").innerHTML = array.recovered;
             document.getElementById("deaths").innerHTML = array.deaths;   
-            document.getElementById("date").innerHTML = 'Última atualização: ' + array.date;   
+
+            var dateParts = array.date.split("-");            
+            document.getElementById("date").innerHTML = 'Última atualização: ' + dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
 
         });
 
