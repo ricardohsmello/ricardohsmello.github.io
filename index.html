@@ -16,8 +16,8 @@
     <div class="col-md-3">
             <div class="card border-info mx-sm-1 p-3">
                 <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-check" aria-hidden="true"></span></div>
-                <div class="text-primary text-center mt-3"><h4>Confirmados</h4></div>
-                <div class="text-primary text-center mt-2"><h1><p id="confirmed"></p></h1></div>
+                <div class="text-info text-center mt-3"><h4>Confirmados</h4></div>
+                <div class="text-info text-center mt-2"><h1><p id="confirmed"></p></h1></div>
             </div>
         </div>
 
@@ -46,12 +46,7 @@
         .then(data => {
             var array = data["Brazil"].slice(-1)[0];     
 
-            document.getElementById("confirmed").innerHTML = array.confirmed;
-            document.getElementById("today-cases").innerHTML = 
-                            data["Brazil"].slice(-1)[0].confirmed - 
-                            data["Brazil"].slice(-2)[0].confirmed;
-
-
+            document.getElementById("confirmed").innerHTML = array.confirmed;    
             document.getElementById("recovered").innerHTML = array.recovered;
             document.getElementById("deaths").innerHTML = array.deaths;   
 
