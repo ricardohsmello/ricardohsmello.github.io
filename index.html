@@ -23,8 +23,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-row-padding w3-margin-bottom">
      <div class="w3-quarter" style="margin-top: 10px;">
-      <div class="w3-container w3-orange w3-padding-16">
-        <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
+      <div class="w3-panel w3-card-4 w3-orange w3-padding-16">
+        <div class="w3-left"></div>
         <div class="w3-right">
           <h1><p id="confirmed"></p></h1>
         </div>
@@ -34,8 +34,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
 
     <div class="w3-quarter" style="margin-top: 10px;" >
-      <div class="w3-container w3-green w3-padding-16">
-        <div class="w3-left"><i class="fa fa-thumbs-o-up w3-xxxlarge"></i></div>
+      <div class="w3-panel w3-card-4 w3-green w3-padding-16">
+        <div class="w3-left"></div>
         <div class="w3-right">
           <h1><p id="recovered"></h1>
         </div>
@@ -44,8 +44,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
     </div>    
     <div class="w3-quarter" style="margin-top: 10px;">
-      <div class="w3-container w3-red w3-padding-16" >
-        <div class="w3-left"><i class="fa fa-thumbs-o-down w3-xxxlarge"></i></div>
+      <div class="w3-panel w3-card-4 w3-red w3-padding-16" >
+        <div class="w3-left"></div>
         <div class="w3-right">
           <h1><p id="deaths"></h1>
         </div>
@@ -88,13 +88,18 @@ function w3_close() {
   overlayBg.style.display = "none";
 }
 
+
+var y = 28347;
+
+console.log(y.toLocaleString().replace(",", "."));
+
 fetch("https://covid19-brazil-api.now.sh/api/report/v1/brazil")
         .then(response => response.json())
         .then(data => {
          
-            document.getElementById("confirmed").innerHTML = data["data"].confirmed;    
-            document.getElementById("recovered").innerHTML = data["data"].recovered;
-            document.getElementById("deaths").innerHTML = data["data"].deaths;   
+            document.getElementById("confirmed").innerHTML = data["data"].confirmed.toLocaleString().replace(",", ".");    
+            document.getElementById("recovered").innerHTML = data["data"].recovered.toLocaleString().replace(",", ".");
+            document.getElementById("deaths").innerHTML = data["data"].deaths.toLocaleString().replace(",", ".");   
 
             var dt = data["data"].updated_at.substring(0,10);
 
